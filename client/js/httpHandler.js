@@ -6,11 +6,26 @@
   // TODO: build the swim command fetcher here
   //
 
-  const randomCommandGetter = () => {
-    let command = '';
-    $.get(serverUrl, (data) => command = data);
-    SwimTeam.move(command);
+  // we use window prefix to fetchCommand so that we can override the side effect of the iife
+  // of this file.
+  window.fetchCommand = () => {
+    $.ajax({
+      type: 'GET',
+      url: serverUrl,
+      success: (command) => {
+        SwimTeam.move(command);
+        console.log(command);
+      }
+    });
   }
+  // const randomCommandGetter = () => {
+  //   $.get(serverUrl, (data) => SwimTeam.move(data));
+  // }
+
+// Doesn't work:
+// let command = '';
+// $.get(serverUrl, (data) => command = data);
+// SwimTeam.move(command);
   // function get Random command
     // declare command variable
     // ajax get request with callback that assigns (data) to command variable
