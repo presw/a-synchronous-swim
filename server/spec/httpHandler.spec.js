@@ -14,8 +14,7 @@ describe('server responses', () => {
     httpHandler.router(req, res);
     expect(res._responseCode).to.equal(200);
     expect(res._ended).to.equal(true);
-    // TODO: address what to return to OPTIONS req
-    expect(res._data.toString()).to.be.oneOf(['left','right','up','down']);
+    expect(res._data.toString()).to.be.empty;
     done();
   });
 
