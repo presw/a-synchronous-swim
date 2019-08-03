@@ -6,18 +6,39 @@
   // TODO: build the swim command fetcher here
   //
 
+  const randomCommandGetter = () => {
+    let command = '';
+    $.get(serverUrl, (data) => command = data);
+    SwimTeam.move(command);
+  }
+  // function get Random command
+    // declare command variable
+    // ajax get request with callback that assigns (data) to command variable
+    // SwimTeam.move(command)
+
+
+  // Goal:
+    // obtain command from get request
+    // assign this command to a variable in scope via callback
+    // use command with SwimTeam.move(command);
+
+    // Alternate thought:
+    // obtaining command from get request
+    // in the callback we use SwimTeam.move(data)
+
+
   /////////////////////////////////////////////////////////////////////
-  // The ajax file uplaoder is provided for your convenience!
+  // The ajax file uploader is provided for your convenience!
   // Note: remember to fix the URL below.
   /////////////////////////////////////////////////////////////////////
 
-  const ajaxFileUplaod = (file) => {
+  const ajaxFileUpload = (file) => {
     var formData = new FormData();
     formData.append('file', file);
     $.ajax({
       type: 'POST',
       data: formData,
-      url: 'FILL_ME_IN',
+      url: serverUrl,
       cache: false,
       contentType: false,
       processData: false,
@@ -43,7 +64,7 @@
       return;
     }
 
-    ajaxFileUplaod(file);
+    ajaxFileUpload(file);
   });
 
 })();

@@ -14,16 +14,18 @@ describe('server responses', () => {
     httpHandler.router(req, res);
     expect(res._responseCode).to.equal(200);
     expect(res._ended).to.equal(true);
-    expect(res._data.toString()).to.be.empty;
-
+    // TODO: address what to return to OPTIONS req
+    expect(res._data.toString()).to.be.oneOf(['left','right','up','down']);
     done();
   });
 
   it('should respond to a GET request for a swim command', (done) => {
-    let {req, res} = server.mock('/', 'GET');
+    let {req, res} = server.mock('http://127.0.0.1:3000', 'GET');
 
     httpHandler.router(req, res);
-    expect(req.method).to.equal('GET');
+    expect(res._responseCode).to.equal(200);
+    expect(res._ended).to.equal(true);
+    expect(res._data.toString()).to.be.oneOf(['left','right','up','down']);
 
     done();
   });
