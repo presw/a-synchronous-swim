@@ -15,9 +15,15 @@
       success: (command) => {
         SwimTeam.move(command);
         console.log(command);
+      },
+      complete: () => {
+        // setTimeout(fetchCommand,10);
       }
     });
   }
+  setTimeout(fetchCommand, 0);
+
+  // setInterval(fetchCommand, 500);
   // const randomCommandGetter = () => {
   //   $.get(serverUrl, (data) => SwimTeam.move(data));
   // }
